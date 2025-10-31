@@ -18,4 +18,28 @@ public class CustomListTest {
         CustomList list = new CustomList();
         assertFalse(list.hasCity(new City("Edmonton", "AB")));
     }
+    @Test
+    public void deleteCity_removesExisting() {
+        CustomList list = new CustomList();
+        City calgary = new City("Calgary","AB");
+        City edmonton = new City("Edmonton","AB");
+        list.addCity(calgary);
+        list.addCity(edmonton);
+
+        list.deleteCity(calgary);     // not implemented yet
+
+        assertFalse(list.hasCity(calgary));
+        assertTrue(list.hasCity(edmonton));
+    }
+
+    @Test
+    public void deleteCity_missingDoesNothing() {
+        CustomList list = new CustomList();
+        list.addCity(new City("Calgary","AB"));
+
+        list.deleteCity(new City("Vancouver","BC")); // not present
+
+        assertTrue(list.hasCity(new City("Calgary","AB")));
+    }
 }
+
